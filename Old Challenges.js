@@ -13,9 +13,9 @@ var temp = 35
     if (temp === '212'){
         console.log(`${temp} is the boiling point`)
     }
-    else if temp > '212'
+    else if (temp > '212'){
         return "temp is above boiling point"
-    else 
+    } 
 
 
 
