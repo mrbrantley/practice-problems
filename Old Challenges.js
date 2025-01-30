@@ -13,9 +13,9 @@ var temp = 35
     if (temp === '212'){
         console.log(`${temp} is the boiling point`)
     }
-    else if temp > '212'
+    else if (temp > '212'){
         return "temp is above boiling point"
-    else 
+    } 
 
 
 
@@ -317,3 +317,73 @@ var cubeAndSum2 = [0, 5, 10]
 
 
     // b) Create the function that makes the test pass.
+
+
+  // Write a function that logs the first 50 prime numbers
+  
+function isPrime(num) {
+    if (num <= 1) return false; // 0 and 1 are not primes
+    if (num === 2) return true; // 2 is the only even prime
+    if (num % 2 === 0) return false; // Skip even numbers
+
+// Check divisibility up to the square root of the number
+    for (let i = 3; i <= Math.sqrt(num); i += 2) {
+        if (num % i === 0) return false;
+    }
+    return true;
+}
+
+function findFirstNPrimes(n) {
+    const primes = [];
+    let num = 2; // Start checking from the first prime number
+
+    while (primes.length < n) {
+        if (isPrime(num)) {
+            primes.push(num);
+        }
+        num++;
+    }
+    return primes;
+}
+
+// Find the first 50 prime numbers
+const first50Primes = findFirstNPrimes(50);
+console.log(first50Primes);
+
+
+//write a function that can detect if poker hand is a full house. the poker hand is 5 cards, the deck of cards is a standard 52 card deck.
+function isFullHouse(hand) {
+    /**
+     * Determines if a given poker hand is a full house.
+     * 
+     * @param {string[]} hand - An array of 5 cards, where each card is represented as a string (e.g., '2H' for 2 of Hearts).
+     * @returns {boolean} - True if the hand is a full house, false otherwise.
+     */
+    // Extract the ranks of the cards (ignoring suits)
+    const ranks = hand.map(card => card.slice(0, -1));
+
+    // Count the occurrences of each rank
+    const rankCounts = {};
+    for (const rank of ranks) {
+        rankCounts[rank] = (rankCounts[rank] || 0) + 1;
+    }
+
+    // Get the sorted counts of ranks
+    const counts = Object.values(rankCounts).sort((a, b) => a - b);
+
+    // Check if the counts match [2, 3]
+    return counts.length === 2 && counts[0] === 2 && counts[1] === 3;
+}
+
+// Example usage:
+const hand1 = ['2H', '2D', '2S', '3H', '3D']; // Full house
+const hand2 = ['4H', '4D', '5S', '5H', '5D']; // Full house
+const hand3 = ['7H', '7D', '8S', '8H', '9D']; // Not a full house
+const hand4 = ['7H', '7D', '4S', '4H', '4D']; // Full house
+const hand5 = ['9H', '2D', '9S', '2H', '9D']; // Full house
+
+console.log(isFullHouse(hand1)); // Output: true
+console.log(isFullHouse(hand2)); // Output: true
+console.log(isFullHouse(hand3)); // Output: false
+console.log(isFullHouse(hand4)); // Output: true
+console.log(isFullHouse(hand5)); // Output: true
